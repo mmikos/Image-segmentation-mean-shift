@@ -11,7 +11,7 @@ dataT=data';
 
 data_pointT=data_point';
 
-threshold = 0.1;
+threshold = 0.01;
 
 difference = 1;
 
@@ -28,6 +28,8 @@ while all(difference) > threshold
 %     found_prev = cat(1, found_prev, found_cpts);
 
     cpts(distances <= r/c) = 1;
+    
+%     counter = length(find(cpts==1));
 
     curr_data = dataT(found, :);
 

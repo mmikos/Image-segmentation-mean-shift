@@ -10,7 +10,7 @@ label_count = 1;
 
 labels(found_distance) = label_count;     
 
-for idx = 2:length(data)
+for idx = 1:length(data)
     
     if labels(idx) == 0
 
@@ -18,17 +18,19 @@ for idx = 2:length(data)
   
         for j = 1:label_count
         
-            if  abs(peaks - peak) < r/2 == 0
+            if  all(abs(peaks(:, label_count) - peak) < r/2) == 1     
         
-            label_count = label_count + 1; 
-            
-            peaks(:, label_count) = peak;
+            labels(idx) = label_count;             
 
             labels(found_distance) = label_count;
         
             else
                                  
-            labels(idx) = label_count;
+            label_count = label_count + 1;  
+             
+            peaks(:, label_count) = peak;
+                                 
+            labels(found_distance) = label_count;
 
             end
         end

@@ -12,7 +12,7 @@ index = find(cpts == 1);
 
 labels(index) = label_count;     
 
-for idx = 2:length(data)
+for idx = 1:length(data)
     
     if labels(idx) == 0
 
@@ -20,21 +20,24 @@ for idx = 2:length(data)
     
     index = find(cpts == 1);
   
-        for j = 1:label_count
+        for counter = 1:label_count
         
-            if  abs(peaks - peak) < r/2 == 0
-        
-            label_count = label_count + 1; 
-            
-            peaks(:, label_count) = peak;
+            if all(abs(peaks(:,counter) - peak) < r/2) == 1                       
 
-            labels(index) = label_count;
+                labels(index) = counter;
         
-            else
+                break
+            
+            end           
+        end
+        
+        if labels(idx) == 0
+                
+            label_count = label_count + 1;  
+             
+            peaks(:, label_count) = peak;
                                  
             labels(index) = label_count;
-
-            end
         end
     end
 end

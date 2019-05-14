@@ -6,7 +6,7 @@ dataT=data';
 
 data_pointT=data_point';
 
-threshold = 0.1;
+threshold = 0.01;
 
 difference = 1;
 
