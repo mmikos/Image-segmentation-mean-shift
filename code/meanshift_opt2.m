@@ -1,10 +1,10 @@
-function [labels, peaks] = meanshift_opt2(data, r)
+function [labels, peaks] = meanshift_opt2(data, r, c)
 
 labels = zeros(1, size(data,2));
 
 label_count = 1;
 
-[peak, cpts] = findpeak_opt(data, 1, r); 
+[peak, cpts] = findpeak_opt(data, 1, r, c); 
 
 peaks(:, 1) = peak;
 
@@ -16,7 +16,7 @@ for idx = 1:length(data)
     
     if labels(idx) == 0
 
-    [peak, cpts] = findpeak_opt(data, idx, r);
+    [peak, cpts] = findpeak_opt(data, idx, r, c);
     
     index = find(cpts == 1);
   

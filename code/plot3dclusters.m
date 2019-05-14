@@ -10,13 +10,10 @@ function plot3dclusters( data, labels, means )
 n = size(means,2);
 for label = 1:n
     % pick random color
-%     color = rand([3 1]);
-    color = means(:, label);
-    color = lab2rgb(color');
-    color(color < 0) = 0;
+    color = rand([3 1]);
     cluster = data( :, find(labels == label) );
     plot3(cluster(1,:),cluster(2,:),cluster(3,:),'.','Color',color); hold on;
-%     plot3(means(1,label), means(2,label), means(3,label), 'kx', 'MarkerSize', 24.0, 'LineWidth', 4.0);
+    plot3(means(1,label), means(2,label), means(3,label), 'kx', 'MarkerSize', 24.0, 'LineWidth', 4.0);
 end
 grid on;
     

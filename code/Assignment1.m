@@ -3,7 +3,7 @@ load('data/pts.mat');
 
 list = zeros(size(data));
 
-r=2;
+r = 2;
 
 
 for idx = 1:length(data)
@@ -15,48 +15,45 @@ for idx = 1:length(data)
 end
 
 %%
+clear
+
 load('data/pts.mat');
 
+r = 2;
+
+c = 1;
+
 tic()
- 
-[labels, peaks] = meanshift_opt(data, 2);
-% [labels, peaks] = meanshift_opt2(imgT,r);
+
+[labels, peaks] = meanshift_opt2(data, r, c);
+% [labels, peaks] = meanshift_opt(data, r);
+
 toc()
 
 plot3dclusters( data, labels, peaks )
+title(['radius = ',num2str(r),', c = ', num2str(c)]);
 
 %%
+clear 
 
-% he = imread('55075.jpg');
-% imshow(he);
-% 
-% lab_he = rgb2lab(he);
-%  
-% ab = lab_he(:,:,2:3);
-% ab = im2single(ab);
-% nColors = 3;
-% % repeat the clustering 3 times to avoid local minima
-% pixel_labels = imsegkmeans(ab,nColors,'NumAttempts',3);
-% 
-% imshow(pixel_labels,[])
-% title('Image Labeled by Cluster Index');
+im = imread('img1.jpg');
 
+r = 20;
 
-%%
-im = imread('181091.jpg');
+c = 4;
 
-r = 100;
-
-% imshow(im )
+feature_type = '5D';
 
 tic()
  
-[segmIm, labels, peaks, img] = imSegment(im, r, '3D');
-toc()
-row = size(im,1);
-column = size(im,2);
-im = reshape(im,row*column,3);
+[segmIm, labels, peaks, im_flattened] = imSegment(im, r, c, feature_type);
 
-plot3dclusters(im', labels, peaks )
-%  imshow(segmIm)
-segmIm = reshape(segmIm,row,column);
+toc()
+
+figure;
+imshow(segmIm);
+title(['radius = ',num2str(r),', c = ', num2str(c),', feature type = ', num2str(feature_type)]);
+
+figure;
+plot3dclustersRGB(im_flattened', labels, peaks )
+title(['radius = ',num2str(r),', c = ', num2str(c),', feature type = ', num2str(feature_type)]);

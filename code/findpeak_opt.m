@@ -1,9 +1,9 @@
-function [function_peak, cpts] = findpeak_opt(data, idx, r)
+function [function_peak, cpts] = findpeak_opt(data, idx, r, c)
 % found_cpts,found_prev
 
 cpts = zeros(1, size(data,2));
 
-c = 4;
+% c = 4;
 
 data_point = data(:,idx);
 

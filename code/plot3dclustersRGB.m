@@ -4,7 +4,7 @@
 %   labels are specified by LABELS and MEANS respectively.
 
 
-function plot3dclusters( data, labels, means )
+function plot3dclustersRGB( data, labels, means )
 
 % plot each cluster
 n = size(means,2);
@@ -13,7 +13,8 @@ for label = 1:n
 %     color = rand([3 1]);
     color = means(:, label);
     color = lab2rgb(color');
-    findNaN = find(isnan(colod) == 1)
+    color(color < 0) = 0;
+    color(color > 1) = 1;
     cluster = data( :, find(labels == label) );
     plot3(cluster(1,:),cluster(2,:),cluster(3,:),'.','Color',color); hold on;
 %     plot3(means(1,label), means(2,label), means(3,label), 'kx', 'MarkerSize', 24.0, 'LineWidth', 4.0);

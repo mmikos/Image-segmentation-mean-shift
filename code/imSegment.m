@@ -1,4 +1,4 @@
-function [segmIm, labels, peaks, im_flattened] = imSegment(im, r, feature_type)
+function [segmIm, labels, peaks, im_flattened] = imSegment(im, r, c, feature_type)
 %IMSEGMENT image segmentation.
 %   Description of its functionaility is given in the assignment
 %
@@ -25,7 +25,7 @@ if feature_type == '3D'
 
     imgT=img';
 
-    [labels, peaks] = meanshift_opt2(imgT,r);
+    [labels, peaks] = meanshift_opt2(imgT, r, c);
    
     label_pixel = reshape(labels,row,column);
 
@@ -59,7 +59,7 @@ elseif feature_type == '5D'
 
     imgT=img';
 
-    [labels, peaks] = meanshift_opt2(imgT,r);
+    [labels, peaks] = meanshift_opt2(imgT, r, c);
 
     peaks = peaks(1:3,:);
 

@@ -1,35 +1,43 @@
 clear
 
-im = imread('img3.jpg');
+im = imread('img1.jpg');
 
-r = 8;
+r = 10;
+
+c = 2;
+
+feature_type = '5D';
 
 tic()
  
-[segmIm, labels, peaks, im_flattened] = imSegment(im, r, '5D');
+[segmIm, labels, peaks, im_flattened] = imSegment(im, r, c, feature_type);
 toc()
 
+% figure;
+
+% subplot(121)
+% imshow(im)
+
+% subplot(122)
 figure;
-
-subplot(121)
-imshow(im)
-
-subplot(122)
 imshow(segmIm);
-% 
-% row = size(im,1);
-% column = size(im,2);
-% im = reshape(im,row*column,3);
+title(['radius = ',num2str(r),', c = ', num2str(c),', feature type = ', num2str(feature_type)]);
+
 figure;
-plot3dclusters(im_flattened', labels, peaks )
+plot3dclustersRGB(im_flattened', labels, peaks )
+title(['radius = ',num2str(r),', c = ', num2str(c),', feature type = ', num2str(feature_type)]);
 
 % n = size(peaks,2);
 % for label = 1:n
-%     % pick random color
-% %     color = rand([3 1]);
-%     color = peaks(:, label);
+%     
+% color = peaks(:, label);
 %     color = lab2rgb(color');
-%     list(:, label) = color;
+%     color(color < 0.00000001) = 0;
+%  
+% list(:,label)=color;
+%  
 % end
+
+
 
 % imshow(label_pixel,[])
