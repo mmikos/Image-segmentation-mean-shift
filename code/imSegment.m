@@ -1,4 +1,6 @@
+
 function [segmIm, labels, peaks, im_flattened] = imSegment(im, r, c, feature_type)
+%%
 %IMSEGMENT image segmentation.
 %   Description of its functionaility is given in the assignment
 %
@@ -28,27 +30,34 @@ if feature_type == '3D'
     [labels, peaks] = meanshift_opt2(imgT, r, c);
    
     label_pixel = reshape(labels,row,column);
-
+    label_pixel_flattened = reshape(label_pixel,row*column,1);
     no_of_peaks = length(peaks);
 
 % peaksrgb = lab2rgb(peaks');
 % 
 % peaksrgb=peaksrgb';
 
-    segmIm = zeros(size(im));
-   
+%     segmIm = zeros(size(im));
+    segmIm = zeros(size(im_flattened'));   
+    
         for label = 1:no_of_peaks
-
-            for x = 1 : row
-                 for y = 1 : column
-                        segmIm(x, y, :) = peaks(:, label_pixel(x, y));
-                 end
-            end
-        end
+          
+            found = find(label_pixel_flattened == label);
+            segmIm(:,found) = peaks(:,label_pixel_flattened(found));
+          
+        end 
+%         for label = 1:no_of_peaks
+% 
+%             for x = 1 : row
+%                  for y = 1 : column
+%                         segmIm(x, y, :) = peaks(:, label_pixel(x, y));
+%                  end
+%             end
+%         end
     
 elseif feature_type == '5D'
 
-    [X, Y] = meshgrid(im(1,:,1),im(:,1,1));
+    [X, Y] = meshgrid(1:column,1:row);
 
     X_flattened = reshape(X,row*column,1);
     Y_flattened = reshape(Y,row*column,1);
@@ -64,27 +73,35 @@ elseif feature_type == '5D'
     peaks = peaks(1:3,:);
 
     label_pixel = reshape(labels,row,column);
-
+    label_pixel_flattened = reshape(label_pixel,row*column,1);
     no_of_peaks = length(peaks);
 
     % peaksrgb = lab2rgb(peaks');
     % 
     % peaksrgb=peaksrgb';
 
-    segmIm = zeros(size(im));
+    segmIm = zeros(size(im_flattened'));
 
-        for label = 1:no_of_peaks
-            for x = 1 : row
-                for y = 1 : column
-                        segmIm(x, y, :) = peaks(:, label_pixel(x, y));
-                end
-            end
-        end
+%         for label = 1:no_of_peaks
+%             for x = 1 : row
+%                 for y = 1 : column
+%                         segmIm(x, y, :) = peaks(:, label_pixel(x, y));
+%                 end
+%             end
+%         end
+        
+      for label = 1:no_of_peaks
+          
+          found = find(label_pixel_flattened == label);
+          segmIm(:,found) = peaks(:,label_pixel_flattened(found));
+          
+      end  
 
 else
 
         disp('Wrong input')
 
 end
-        
+ 
+segmIm = reshape(segmIm', row, column, 3);
 segmIm = lab2rgb(segmIm);

@@ -4,7 +4,7 @@ im = imread('img1.jpg');
 
 r = 10;
 
-c = 2;
+c = 1;
 
 feature_type = '5D';
 
@@ -38,6 +38,20 @@ title(['radius = ',num2str(r),', c = ', num2str(c),', feature type = ', num2str(
 %  
 % end
 
-
+% 
+% load('data/pts.mat');
+% 
+% list = zeros(size(data));
+% 
+% r = 2;
+% 
+% 
+% for idx = 1:length(data)
+%     
+%  peak = findpeak(data, idx, 2);
+%  
+%  list(:, idx) = peak;
+%  
+% end
 
 % imshow(label_pixel,[])
