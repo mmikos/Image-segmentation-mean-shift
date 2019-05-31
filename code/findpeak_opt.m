@@ -41,7 +41,9 @@ function [function_peak, cpts] = findpeak_opt(data, idx, r, c)
      distances = pdist2(dataT, data_pointT, 'euclidean');
 
      found = find(distances <= r);
-
+    
+     % assign value 1 when distance between the point and rest of the data is smaller than r/c
+     
      cpts(distances <= r/c) = 1;
 
      curr_data = dataT(found, :);
@@ -55,3 +57,4 @@ function [function_peak, cpts] = findpeak_opt(data, idx, r, c)
  end
 
  function_peak=function_peak';
+end

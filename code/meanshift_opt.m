@@ -10,7 +10,7 @@ function [labels, peaks] = meanshift_opt(data, r)
 
 % The first speedup associates each data point that is at a distance within the 
 % search window to the peak with the cluster defined by that peak.
-
+% 
 % Meanshift calls findpeak function that outputs found_distance vector that 
 % contains indices of the datapoints at the radius r (within the search window) and 
 % the associated peak.
@@ -64,6 +64,5 @@ function [labels, peaks] = meanshift_opt(data, r)
         end
 
     end
+ end
 end
-
-

@@ -6,10 +6,7 @@
 % shifts the window to the mean and repeats until convergence under 
 % a threshold (here: t = 0.01). With each iteration the window will 
 % shift to a more densely populated portion of the data set until 
-% a peak is reached, where the data is equally distributed in the window.
-% The second speedup takes into account the point within a distance of
-% r/c of the search path. These points are associated with the converged peak,
-% where c is some constant value. 
+% a peak is reached, where the data is equally distributed in the window. 
 
 % Parameters:
 %       data: dataset or image

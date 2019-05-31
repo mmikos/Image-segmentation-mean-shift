@@ -11,7 +11,7 @@ function [labels, peaks] = meanshift_opt2(data, r, c)
 % The second speedup takes into account the point within a distance of
 % r/c of the search path. These points are associated with the converged peak,
 % where c is some constant value. 
-
+% 
 % Meanshift calls findpeak_opt function that uses a checkpoint vector (cpts)
 % storing a 1 for each point that is a distance of r/c from the path, 0 otherwise.
 
@@ -65,3 +65,4 @@ function [labels, peaks] = meanshift_opt2(data, r, c)
      end
      end
  end
+end

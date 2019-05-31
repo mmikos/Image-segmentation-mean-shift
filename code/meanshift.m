@@ -1,6 +1,6 @@
 function [labels, peaks] = meanshift(data, r)
-%% Mean-shift function
-
+%% Mean-shift function - non-optimized
+% 
 % Mean-shift function, calls findpeak for each point and then assigns a label
 % to each point according to its peak. Algorithm compares peaks after each call 
 % to findpeak and merges similar peaks. Two peaks are considered to be the same 
